@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Emacs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y emacs-nox
+      - name: Run ERT tests
+        run: |
+          emacs -Q --batch \
+            --eval "(setq user-emacs-directory (expand-file-name \".emacs.d/\" default-directory))" \
+            -l tests/pro-load-all-seeds-test.el \
+            -l tests/pro-profile-load-test.el \
+            -f ert-run-tests-batch-and-exit
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Emacs
+        shell: powershell
+        run: choco install emacs -y
+      - name: Run ERT tests
+        shell: bash
+        run: |
+          emacs -Q --batch \
+            --eval "(setq user-emacs-directory (expand-file-name \".emacs.d/\" default-directory))" \
+            -l tests/pro-load-all-seeds-test.el \
+            -l tests/pro-profile-load-test.el \
+            -f ert-run-tests-batch-and-exit

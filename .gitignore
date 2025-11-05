@@ -14,4 +14,17 @@ dist/
 *~
 
 # Undo-tree save-files
+
 *.~undo-tree
+*.elc
+auto-save-list/
+var/
+undo/
+.history
+.cache/
+.eslintcache
+.direnv/
+.DS_Store
+
+.context
+...*

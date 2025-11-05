@@ -1,0 +1,9 @@
+#+TITLE: pro3 main
+
+* Start here
+- C-c s — list seeds
+- C-c e — environment info
+- F11  — zen mode
+
+* Notes
+Keep personal notes in org/notes/, journals in org/journal/.
